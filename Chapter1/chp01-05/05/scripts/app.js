@@ -74,4 +74,17 @@ AppView.prototype.handleEvents = function() {
   this.$el.on("keyup", function(e) {
     self.onKeyup(e);
   });
-}
+
+  this.model.on("valid", function() {
+    self.onValid();
+  });
+
+  this.model.on("invalid", function() {
+    self.onInvalid();
+  });
+};
+
+AppView.prototype.onKeyup = function(e) {
+  var $target = $(e.currentTarget);
+  this.model.set($target.val());
+};

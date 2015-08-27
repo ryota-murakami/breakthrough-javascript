@@ -1,9 +1,9 @@
-function AppModel(attrs) {
   this.val = "";
+function AppModel(attrs) {
   this.attrs = {
-    required: "",
-    maxlength: 8,
-    minlength: 4
+    required: attrs.required || false,
+    maxlength: attrs.maxlength || 8,
+    minlength: attrs.minlength || 4
   };
   this.listeners = {
     valid: [],
@@ -49,4 +49,21 @@ AppModel.prototype.maxlength = function(num) {
 
 AppModel.prototype.minlength = function(num) {
   return num <= this.val.length;
+};
+
+function AppView(el) {
+  this.initialize(el);
+  this.handleEvents();
+}
+
+AppView.prototype.initialize = function(el) {
+  this.$el = $(el);
+
+  var obj = this.$el.data();
+
+  if (this.$el.prop("required")) {
+    obj["required"] = true;
+  }
+
+  this.model = new AppModel(obj);
 };

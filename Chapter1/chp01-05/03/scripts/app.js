@@ -1,5 +1,5 @@
-  this.val = "";
 function AppModel(attrs) {
+  this.val = "";
   this.attrs = {
     required: attrs.required || false,
     maxlength: attrs.maxlength || 8,

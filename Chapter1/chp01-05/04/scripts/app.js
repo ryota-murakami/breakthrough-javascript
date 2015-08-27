@@ -1,5 +1,5 @@
-  this.val = "";
 function AppModel(attrs) {
+  this.val = "";
   this.attrs = {
     required: attrs.required || false,
     maxlength: attrs.maxlength || 8,
@@ -67,3 +67,11 @@ AppView.prototype.initialize = function(el) {
 
   this.model = new AppModel(obj);
 };
+
+AppView.prototype.handleEvents = function() {
+  var self = this;
+
+  this.$el.on("keyup", function(e) {
+    self.onKeyup(e);
+  });
+}

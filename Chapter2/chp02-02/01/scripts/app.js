@@ -22,3 +22,15 @@ Modal.prototype.handleEvents = function() {
     return false;
   });
 };
+
+Modal.prototype.show = function(e) {
+  var $target = $(e.currentTarget),
+      src = $target.attr("href");
+  this.$contents.html("<img src=\"" + src + "\" />");
+  this.$conteiner.fadeIn();
+  this.$overlay.fadeIn();
+  this.index = $target.data("index");
+  return false;
+};
+
+var modal = new Modal($("#modal-thumb a"));

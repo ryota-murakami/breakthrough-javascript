@@ -3,7 +3,7 @@ function Modal(el) {
 }
 
 Modal.prototype.initialize = function(el) {
-  this.$el = el;
+  this.$el = el;  
   this.$container = $("#modal");
   this.$contents = $("#modal-contents");
   this.$close = $("#modal-close");

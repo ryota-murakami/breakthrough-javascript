@@ -6,7 +6,7 @@ Modal.prototype.initialize = function(el) {
     this.$el = el;
     this.$container = $("#modal");
     this.$contents = $("#modal-contents");
-    this.$close = $("#modal-close");
+    this.$close = $("#modal-close");
     this.$next = $("#modal-next");
     this.$prev = $("#modal-prev");
     this.$overlay = $("#modal-overlay");
@@ -24,7 +24,7 @@ Modal.prototype.handleEvents = function(e) {
         return false;
     });
 
-    this.$close.on("click", function(e){
+    this.$close.on("click", function(e) {
         self.hide(e);
         return false;
     });
@@ -52,7 +52,7 @@ Modal.prototype.handleEvents = function(e) {
 Modal.prototype.show = function(e) {
     var $target = $(e.currentTarget),
         src = $target.attr("href");
-    this.$contents.html("<img src\"" + src + "\" />")
+    this.$contents.html("<img src=\"" + src + "\" />")
     this.$container.fadeIn();
     this.$overlay.fadeIn();
 
@@ -75,38 +75,43 @@ Modal.prototype.slide = function(index) {
     });
 };
 
-Modal.prototype.createCounter = function(index, len){
-  return function(num) {
-    return index = (index + num + len) % len;
-  };
+Modal.prototype.createCounter = function(index, len) {
+    return function(num) {
+        return index = (index + num + len) % len;
+    };
 };
 
 Modal.prototype.next = function() {
-  this.slide(this.countChange( 1 ));
+    this.slide(this.countChange(1));
 };
 
 Modal.prototype.prev = function() {
-  this.slide(this.countChange( -1 ));
+    this.slide(this.countChange(-1));
 };
 
 Modal.prototype.resize = function() {
-  var w = this.$window.width();
-  if(w < 640){
-    this.$container.css({"width": "320","height":"213"});
-  }else{
-    this.$container.css({"width": "750","height":"500"});
-  }
-};
-　
+    var w = this.$window.width();
+    if (w < 640) {
+        this.$container.css({
+            "width": "320",
+            "height": "213"
+        });
+    } else {
+        this.$container.css({
+            "width": "750",
+            "height": "500"
+        });
+    }
+};　
 var modal = new Modal($("#modal-thumb a"));
 
 $("#more-btn").on("click", function() {
-  var html = '<li>\
+    var html = '<li>\
     <a href="images/photo-04.JPG" data-index="3">\
       <img alt="" src="images/photo-04.JPG" width="160" class="img-thumbnail">\
     </a>\
   </li>';
-  $(html).appendTo($("#modal-thumb")).hide().fadeIn();
-  $(this).fadeOut();
-  modal.$el = $("#modal-thumb a");
+    $(html).appendTo($("#modal-thumb")).hide().fadeIn();
+    $(this).fadeOut();
+    modal.$el = $("#modal-thumb a");
 });
